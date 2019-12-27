@@ -8,8 +8,12 @@ bot.onText(/\/movie (.+)/, (msg, match) => {
     let chatId = msg.chat.id;
     request(`http://www.omdbapi.com/?apiKey=4664d79d&t=${movie}`, (error, response, body) => {
         if (!error && response.statusCode == 200) {
-            bot.sendMessage(chatId, '_Looking for _' + movie + '...', { parse_mode: 'Markdown' });
-            bot.sendMessage(chatId, 'Result:\n ' + body);
+            bot.sendMessage(chatId, '_Looking for _' + movie + '...', { parse_mode: 'Markdown' })
+                .then((msg) => {
+                    let res = JSON.parse(body);
+                    bot.sendPhoto(chatId, res.Poster, { caption: 'Result: \nTitle: ' + res.Title + '\nYear: ' + res.Year + '\nRated: ' + res.Rated + '\nReleased: ' + res.Released })
+                })
+
         }
     })
 })
