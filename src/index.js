@@ -1,18 +1,18 @@
 const TelegramBot = require('node-telegram-bot-api');
 let bot = new TelegramBot(process.env.BOT_APIKEY, { polling: true });
 const request = require('request');
+var http = require("http");
 const packageInfo = require('../package.json');
 const express = require('express');
 const app = express();
 
-// var http = require("http");
-// setInterval(function () {
-//     http.get("http://fatais-bot.herokuapp.com");
-// }, 300000); // every 5 minutes (300000)
-
 app.get('/', function (req, res) {
     res.json({ version: packageInfo.version });
 });
+
+setInterval(function () {
+    http.get("http://fatais-bot.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
 
 bot.onText(/\/movie (.+)/, (msg, match) => {
     let movie = match[1];
