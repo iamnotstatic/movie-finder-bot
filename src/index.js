@@ -33,7 +33,7 @@ bot.onText(/\/about (.+)/, (msg, match) => {
     if (match[1]) {
         let chatId = msg.chat.id;
         bot.sendMessage(chatId,
-            `Movie Finder\n A bot where you can search for a movie and get it details.`, { parse_mode: 'Markdown' });
+            `Movie Finder\nA bot where you can search for a movie and get it details.`, { parse_mode: 'Markdown' });
     }
 })
 
