@@ -1,15 +1,18 @@
-const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
 let bot = new TelegramBot(process.env.BOT_APIKEY, { polling: true });
 const request = require('request');
+const express = require('express');
+const packageInfo = require('../package.json');
 const app = express();
-const http = require('http');
 
-const port = process.env.PORT || 3000;
 
-setInterval(function () {
-    http.get('https://fatais-bot.herokuapp.com/')
-}, 300000);
+// setInterval(function () {
+//     http.get('https://fatais-bot.herokuapp.com/')
+// }, 300000);
+
+app.get('/', function (req, res) {
+    res.json({ version: packageInfo.version });
+});
 
 bot.onText(/\/movie (.+)/, (msg, match) => {
     let movie = match[1];
@@ -41,6 +44,10 @@ bot.onText(/\/about (.+)/, (msg, match) => {
     }
 })
 
-app.listen(port, () => {
-    console.log(`Server is up on port ${port}`);
-})
+
+let server = app.listen(process.env.PORT, function () {
+    let host = server.address().address;
+    let port = server.address().port;
+
+    console.log(`Server is up on port ${port}`, host, port);
+});
