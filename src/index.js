@@ -1,7 +1,6 @@
 const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
-const token = process.env.BOT_APIKEY;
-let bot = new TelegramBot(token, { polling: true });
+let bot = new TelegramBot(process.env.BOT_APIKEY, { polling: true });
 const request = require('request');
 const app = express();
 
@@ -26,6 +25,16 @@ bot.onText(/\/movie (.+)/, (msg, match) => {
 
         }
     })
+})
+
+
+// Get about Bot
+bot.onText(/\/about (.+)/, (msg, match) => {
+    if (match[1]) {
+        let chatId = msg.chat.id;
+        bot.sendMessage(chatId,
+            `Movie Finder \n A bot where you can search for a movie and get it details.`, { parse_mode: 'Markdown' });
+    }
 })
 
 app.listen(port, () => {
