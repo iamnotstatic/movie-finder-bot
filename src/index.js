@@ -1,5 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot(process.env.BOT_APIKEY, { polling: true });
+const bot = new TelegramBot(process.env.BOT_APIKEY, { polling: false });
 const request = require('request');
 const http = require("http");
 const packageInfo = require('../package.json');
