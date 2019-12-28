@@ -1,15 +1,19 @@
 {
-  "name": "Tele-bot",
+  "name": "movie-finder",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "env-cmd -f ./config/dev.env node src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Abdulfatai Suleiman",
   "license": "ISC",
   "dependencies": {
     "node-telegram-bot-api": "^0.40.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.0.1"
   }
 }
