@@ -15,7 +15,7 @@ bot.onText(/\/movie (.+)/, (msg, match) => {
             bot.sendMessage(chatId, '_Looking for _' + movie + '...', { parse_mode: 'Markdown' })
                 .then((msg) => {
                     let res = JSON.parse(body);
-                    bot.sendPhoto(chatId, res.Poster, { caption: 'Result: \nTitle: ' + res.Title + '\nYear: ' + res.Year + '\nRated: ' + res.Rated + '\nReleased: ' + res.Released + '\nRuntime: ' + res.Runtime + '\nGenre: ' + res.Genre + '\nDirector: ' + res.Director })
+                    bot.sendPhoto(chatId, res.Poster, { caption: 'Result: \nTitle: ' + res.Title + '\nYear: ' + res.Year + '\nRated: ' + res.Rated + '\nReleased: ' + res.Released + '\nRuntime: ' + res.Runtime + '\nGenre: ' + res.Genre + '\nDirector: ' + res.Director + 'n\Plot: ' + res.Plot })
                         .catch((err) => {
                             if (err) {
                                 bot.sendMessage(chatId, 'Bad request, Please check the title and try again');
