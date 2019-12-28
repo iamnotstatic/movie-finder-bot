@@ -7,7 +7,7 @@ const app = express();
 const http = require('http');
 
 setInterval(function () {
-    http.get("https://fatais-bot.herokuapp.com/");
+    http.get("https://fatais-bot.herokuapp.com");
 }, 300000); // every 5 minutes (300000)
 
 app.get('/', function (req, res) {
