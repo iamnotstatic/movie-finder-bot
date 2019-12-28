@@ -3,9 +3,13 @@ const TelegramBot = require('node-telegram-bot-api');
 let bot = new TelegramBot(process.env.BOT_APIKEY, { polling: true });
 const request = require('request');
 const app = express();
+const http = require('http');
 
 const port = process.env.PORT || 3000;
 
+setInterval(function () {
+    http.get('https://fatais-bot.herokuapp.com/')
+}, 300000);
 
 bot.onText(/\/movie (.+)/, (msg, match) => {
     let movie = match[1];
