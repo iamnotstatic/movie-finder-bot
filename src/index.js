@@ -1,7 +1,12 @@
+const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
 const token = process.env.BOT_APIKEY;
 let bot = new TelegramBot(token, { polling: true });
 const request = require('request');
+const app = express();
+
+const port = process.env.PORT || 3000;
+
 
 bot.onText(/\/movie (.+)/, (msg, match) => {
     let movie = match[1];
@@ -21,4 +26,8 @@ bot.onText(/\/movie (.+)/, (msg, match) => {
 
         }
     })
+})
+
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 })
