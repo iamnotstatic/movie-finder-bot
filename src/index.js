@@ -1,10 +1,12 @@
 const TelegramBot = require('node-telegram-bot-api');
-let bot = new TelegramBot(process.env.BOT_APIKEY, { polling: true });
+const bot = new TelegramBot(process.env.BOT_APIKEY, { polling: true });
 const request = require('request');
-var http = require("http");
+const http = require("http");
 const packageInfo = require('../package.json');
 const express = require('express');
 const app = express();
+
+const port = process.env.PORT || 3000;
 
 app.get('/', function (req, res) {
     res.json({ version: packageInfo.version });
@@ -45,9 +47,6 @@ bot.onText(/\/about (.+)/, (msg, match) => {
 })
 
 
-let server = app.listen(process.env.PORT || 3000, function () {
-    let host = server.address().address;
-    let port = server.address().port;
-
-    console.log(`Server is up on port ${port}`, host, port);
+app.listen(port, function () {
+    console.log(`Server is up on port ${port}`);
 });
