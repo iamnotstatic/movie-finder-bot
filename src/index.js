@@ -4,11 +4,11 @@ const request = require('request');
 const express = require('express');
 const packageInfo = require('../package.json');
 const app = express();
+const http = require('http');
 
-
-// setInterval(function () {
-//     http.get('https://fatais-bot.herokuapp.com/')
-// }, 300000);
+setInterval(function () {
+    http.get("https://fatais-bot.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
 
 app.get('/', function (req, res) {
     res.json({ version: packageInfo.version });
@@ -45,7 +45,7 @@ bot.onText(/\/about (.+)/, (msg, match) => {
 })
 
 
-let server = app.listen(process.env.PORT, function () {
+let server = app.listen(process.env.PORT || 3000, function () {
     let host = server.address().address;
     let port = server.address().port;
 
