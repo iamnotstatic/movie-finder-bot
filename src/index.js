@@ -12,9 +12,9 @@ app.get('/', function (req, res) {
     res.json({ version: packageInfo.version });
 });
 
-setInterval(function () {
-    http.get("http://fatais-bot.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
+// setInterval(function () {
+//     http.get("http://fatais-bot.herokuapp.com");
+// }, 300000); // every 5 minutes (300000)
 
 bot.onText(/\/movie (.+)/, (msg, match) => {
     let movie = match[1];
@@ -35,6 +35,8 @@ bot.onText(/\/movie (.+)/, (msg, match) => {
         }
     })
 })
+
+
 
 
 // Get about Bot
